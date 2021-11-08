@@ -6,7 +6,7 @@ trigger:
 resources:
 - repo: self
 variables:
-  ${{ if startWith(variables['Build.SourceBranchName'], 'release') }}:
+  ${{ if startsWith(variables['Build.SourceBranchName'], 'release') }}:
     defaultTag : $[replace(variables['Build.SourceBranch'], 'refs/heads/release/', '')]
   ${{ else }}:
     defaultTag : $(Build.SourceBranchName)
