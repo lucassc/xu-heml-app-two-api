@@ -10,7 +10,7 @@ variables:
     defaultTag : $[replace(variables['Build.SourceBranch'], 'refs/heads/release/', '')]
   ${{ else }}:
     defaultTag : $(Build.SourceBranchName)
-  tag: $[coalesce($(releaseVersion), $(defaultTag))]
+  tag: $[coalesce(variables.releaseVersion, variables.defaultTag)]
 
 stages:
 - stage: Build
@@ -23,5 +23,5 @@ stages:
     steps:
     - bash: |
         echo defaultTag: $(defaultTag)
-        echo defaultTag: $(tag)
+        echo tag: $(tag)
       displayName: Print versions'
