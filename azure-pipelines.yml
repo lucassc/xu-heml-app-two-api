@@ -22,7 +22,6 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - bash: |
-          echo defaultTag: ${{ defaultTag }}
-          echo defaultTag: ${{ tag }}
-          
+        echo defaultTag: ${{ defaultTag }}
+        echo defaultTag: ${{ tag }}
       displayName: Print versions'
