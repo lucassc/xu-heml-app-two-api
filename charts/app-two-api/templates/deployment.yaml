@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-deployment
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          {{- $tag := .Values.containerRegistry.imageTag | default "latest" }}
+          {{- $url :=  .Values.containerRegistry.url }}
+          {{- $repository := .Values.containerRegistry.repository }}
+          image: {{ printf "%s/%s:%s" $url $repository $tag }}
+          ports:
+            - containerPort: 8080
+          envFrom:
+          - configMapRef:
+              name: {{ .Release.Name }}-configmap

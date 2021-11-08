@@ -1,0 +1,13 @@
+
+environment: "prod"
+name: app-one-api
+
+containerRegistry:
+  url: devxuxu.azurecr.io
+  repository: xu-helm/app-one-api
+  imageTag: latest
+
+service:
+  nodePort: 8080
+  port: 8088  
+  type: NodePort  

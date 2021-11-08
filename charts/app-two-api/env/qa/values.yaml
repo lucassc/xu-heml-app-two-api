@@ -1,0 +1,12 @@
+
+environment: "qa"
+name: app-one-api
+
+containerRegistry:
+  url: devxuxu.azurecr.io
+  repository: xu-helm/app-one-api
+
+service:
+  nodePort: 8080
+  port: 8080
+  type: NodePort

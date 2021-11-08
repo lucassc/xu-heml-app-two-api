@@ -1,0 +1,28 @@
+
+trigger:
+- main
+
+resources:
+- repo: self
+variables:
+  tag: '$(Build.SourceBranchName)-$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'ACR devXuxu'
+        repository: 'xu-helm/app-two-api'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+        addPipelineData: false
+        addBaseImageData: false
