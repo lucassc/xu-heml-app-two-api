@@ -24,4 +24,4 @@ stages:
     - bash: |
         echo defaultTag: $(defaultTag)
         echo tag: $(tag)
-      displayName: Print versions'
+      displayName: Print versions
